@@ -298,18 +298,18 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
   };
 
   return (
-    <div className="inline-block shadow-2xl rounded-xl overflow-hidden bg-black">
+    <div className="inline-block">
       {/* 
-          IMPORTANT: The 'rounded-xl' and 'overflow-hidden' classes must be on the element 
+          IMPORTANT: The 'rounded-lg' and 'overflow-hidden' classes must be on the element 
           referenced by 'id' so that html2canvas captures the rounded corners.
       */}
       <div 
         id={id}
-        className={`relative flex flex-col justify-end text-white rounded-xl overflow-hidden transform-origin-top-left bg-black ${currentStyle.container}`}
+        className={`relative flex flex-col justify-end text-white rounded-lg overflow-hidden transform-origin-top-left bg-black ${currentStyle.container}`}
         style={{ backgroundColor: config.overlayColor }}
       >
         {/* Background Image */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-lg">
             <img 
                 src={data.backgroundUrl} 
                 alt="Background" 
