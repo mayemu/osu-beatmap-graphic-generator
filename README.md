@@ -15,6 +15,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/1aoalxdTCcObdDXlTr-S1GQ
 1. **Install dependencies**  
    `npm install`
 2. Run the development server
+   
    `npm run dev`
    
 The app will start and open in your browser, usually at http://localhost:5173.
