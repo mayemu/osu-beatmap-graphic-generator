@@ -362,13 +362,13 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
             )}
 
             {/* Title */}
-            <h1 className={`${currentStyle.titleSize} ${currentStyle.titleMargin} font-black text-white ${fontClass} tracking-tight drop-shadow-xl leading-none max-w-full line-clamp-1`}>
+            <h1 className={`${currentStyle.titleSize} ${currentStyle.titleMargin} font-black text-white ${fontClass} tracking-tight drop-shadow-xl leading-tight max-w-full line-clamp-1`}>
                 {data.title}
             </h1>
             
             {/* Artist */}
             <h2 
-                className={`${currentStyle.artistSize} font-medium ${fontClass} tracking-wide drop-shadow-lg max-w-full line-clamp-1 leading-none`}
+                className={`${currentStyle.artistSize} font-medium ${fontClass} tracking-wide drop-shadow-lg max-w-full line-clamp-1 leading-tight`}
                 style={{ color: `${config.accentColor}dd` }} 
             >
                 {data.artist}
