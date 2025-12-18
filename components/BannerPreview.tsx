@@ -298,15 +298,15 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
   };
 
   return (
-    <div className="inline-block shadow-2xl rounded-xl overflow-hidden bg-black">
+    <div className="inline-block shadow-2xl bg-black" style={{ borderRadius: '0.75rem' }}>
       {/* 
           IMPORTANT: The 'rounded-xl' and 'overflow-hidden' classes must be on the element 
           referenced by 'id' so that html2canvas captures the rounded corners.
       */}
       <div 
         id={id}
-        className={`relative flex flex-col justify-end text-white rounded-xl overflow-hidden transform-origin-top-left bg-black ${currentStyle.container}`}
-        style={{ backgroundColor: config.overlayColor }}
+        className={`relative flex flex-col justify-end text-white transform-origin-top-left bg-black ${currentStyle.container}`}
+        style={{ backgroundColor: config.overlayColor, borderRadius: '0.75rem', overflow: 'hidden' }}
       >
         {/* Background Image */}
         <div className="absolute inset-0 z-0 overflow-hidden">
@@ -354,7 +354,7 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
             {/* Custom Text (Subtitle/Supertitle) */}
             {config.customText && (
                 <div 
-                    className={`${currentStyle.customTextSize} font-bold uppercase text-white/90 drop-shadow-md ${fontClass} mt-1`}
+                    className={`${currentStyle.customTextSize} font-bold uppercase text-white/90 drop-shadow-md ${fontClass} mt-1 leading-snug overflow-visible max-w-full line-clamp-1`}
                     style={accentStyle}
                 >
                     {config.customText}
@@ -362,13 +362,13 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
             )}
 
             {/* Title */}
-            <h1 className={`${currentStyle.titleSize} ${currentStyle.titleMargin} font-black text-white ${fontClass} tracking-tight drop-shadow-xl leading-none max-w-full line-clamp-1`}>
+            <h1 className={`${currentStyle.titleSize} ${currentStyle.titleMargin} font-black text-white ${fontClass} tracking-tight drop-shadow-xl leading-snug max-w-full line-clamp-1 overflow-visible`}>
                 {data.title}
             </h1>
             
             {/* Artist */}
             <h2 
-                className={`${currentStyle.artistSize} font-medium ${fontClass} tracking-wide drop-shadow-lg max-w-full line-clamp-1 leading-none`}
+                className={`${currentStyle.artistSize} font-medium ${fontClass} tracking-wide drop-shadow-lg max-w-full line-clamp-1 leading-snug overflow-visible`}
                 style={{ color: `${config.accentColor}dd` }} 
             >
                 {data.artist}
