@@ -306,15 +306,20 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
       <div 
         id={id}
         className={`relative flex flex-col justify-end text-white rounded-xl overflow-hidden transform-origin-top-left bg-black ${currentStyle.container}`}
-        style={{ backgroundColor: config.overlayColor }}
+        style={{ 
+          backgroundColor: config.overlayColor, 
+          borderRadius: '0.75rem',
+          boxSizing: 'border-box',
+          position: 'relative'
+        }}
       >
         {/* Background Image */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-xl">
             <img 
                 src={data.backgroundUrl} 
                 alt="Background" 
                 crossOrigin="anonymous"
-                className="w-full h-full object-cover transition-all duration-700 min-w-full min-h-full scale-[1.02]"
+                className="w-full h-full object-cover transition-all duration-700 min-w-full min-h-full"
             />
         </div>
         
@@ -331,7 +336,11 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
         </div>
         
         {/* Content Container */}
-        <div className={`relative z-30 flex flex-col items-start w-full ${currentStyle.padding} ${currentStyle.layoutGap}`}>
+        <div className={`relative z-30 flex flex-col items-start w-full ${currentStyle.padding} ${currentStyle.layoutGap}`} style={{ 
+          boxSizing: 'border-box',
+          minHeight: 0,
+          overflow: 'visible'
+        }}>
             
             {/* Top Row: Badges, BPM */}
             <div className={`flex items-center gap-2 mb-auto min-h-[20px] flex-wrap pb-2`}>
@@ -362,14 +371,28 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
             )}
 
             {/* Title */}
-            <h1 className={`${currentStyle.titleSize} ${currentStyle.titleMargin} font-black text-white ${fontClass} tracking-tight drop-shadow-xl leading-none max-w-full line-clamp-1`}>
+            <h1 className={`${currentStyle.titleSize} ${currentStyle.titleMargin} font-black text-white ${fontClass} tracking-tight drop-shadow-xl leading-[1.2] max-w-full`}
+              style={{ 
+                wordWrap: 'break-word', 
+                overflowWrap: 'break-word', 
+                hyphens: 'auto',
+                marginTop: '0.2em',
+                marginBottom: '0.1em'
+              }}>
                 {data.title}
             </h1>
             
             {/* Artist */}
             <h2 
-                className={`${currentStyle.artistSize} font-medium ${fontClass} tracking-wide drop-shadow-lg max-w-full line-clamp-1 leading-none`}
-                style={{ color: `${config.accentColor}dd` }} 
+                className={`${currentStyle.artistSize} font-medium ${fontClass} tracking-wide drop-shadow-lg max-w-full leading-[1.2]`}
+                style={{ 
+                  color: `${config.accentColor}dd`, 
+                  wordWrap: 'break-word', 
+                  overflowWrap: 'break-word', 
+                  hyphens: 'auto',
+                  marginTop: '0.1em',
+                  marginBottom: '0.1em'
+                }} 
             >
                 {data.artist}
             </h2>
