@@ -212,24 +212,10 @@ const App: React.FC = () => {
       const canvas = await window.html2canvas(element, {
         useCORS: true,
         allowTaint: true,
-        scale: 2,
+        scale: 2, 
         backgroundColor: null,
         logging: false,
         imageTimeout: 15000,
-        foreignObjectRendering: true,
-        onclone: (clonedDocument) => {
-          const clonedElement = clonedDocument.getElementById(bannerRefId);
-          if (clonedElement) {
-            clonedElement.style.overflow = 'visible';
-            clonedElement.style.minHeight = 'auto';
-            const contentDiv = clonedElement.querySelector('[style*="boxSizing"]') as HTMLElement;
-            if (contentDiv) {
-              contentDiv.style.overflow = 'visible';
-              contentDiv.style.height = 'auto';
-              contentDiv.style.minHeight = 'auto';
-            }
-          }
-        }
       });
 
       const link = document.createElement('a');
