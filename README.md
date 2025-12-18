@@ -12,9 +12,10 @@ View your app in AI Studio: https://ai.studio/apps/drive/1aoalxdTCcObdDXlTr-S1GQ
 
 **Prerequisites:**  Node.js
 
-1. **Install dependencies**  
+1. **Install dependencies**
+   
    `npm install`
-2. Run the development server
+3. Run the development server
    
    `npm run dev`
    
