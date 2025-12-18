@@ -209,27 +209,13 @@ const App: React.FC = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, 100));
 
-      // Get the exact dimensions of the banner element
-      const rect = element.getBoundingClientRect();
-      const width = Math.round(rect.width);
-      const height = Math.round(rect.height);
-
       const canvas = await window.html2canvas(element, {
         useCORS: true,
         allowTaint: true,
-        scale: 2,
-        width: width,
-        height: height,
+        scale: 2, 
         backgroundColor: null,
         logging: false,
         imageTimeout: 15000,
-        onclone: (clonedDocument) => {
-          // Ensure the cloned element has no overflow issues
-          const clonedElement = clonedDocument.getElementById(bannerRefId);
-          if (clonedElement) {
-            clonedElement.style.overflow = 'hidden';
-          }
-        }
       });
 
       const link = document.createElement('a');
