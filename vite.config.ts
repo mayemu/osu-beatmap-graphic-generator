@@ -3,9 +3,13 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // Ensures assets are linked correctly on GitHub Pages
+  base: './',
+  server: {
+    host: '0.0.0.0',
+    port: 5000,
+    allowedHosts: true,
+  },
   define: {
-    // Prevents crashes when accessing process.env in the browser
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY || '')
   }
 });
