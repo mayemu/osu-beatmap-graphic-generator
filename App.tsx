@@ -6,6 +6,7 @@ import BannerPreview from './components/BannerPreview';
 declare global {
   interface Window {
     html2canvas: any;
+    htmlToImage: any;
   }
 }
 
@@ -198,11 +199,6 @@ const App: React.FC = () => {
   };
 
   const handleDownload = async () => {
-    if (!window.html2canvas) {
-      alert("HTML2Canvas library not loaded.");
-      return;
-    }
-
     const element = document.getElementById(bannerRefId);
     if (!element) return;
 
@@ -212,17 +208,51 @@ const App: React.FC = () => {
         await document.fonts.ready;
       }
       
+      // Preload fonts by rendering text to a hidden canvas with each font
+      const fonts = ['Exo 2', 'Lexend', 'Comfortaa', 'Poppins', 'Manrope', 'Inter', 'Roboto Mono', 'Playfair Display', 'Montserrat', 'Oswald', 'Raleway', 'Permanent Marker'];
+      const preloadCanvas = document.createElement('canvas');
+      const ctx = preloadCanvas.getContext('2d');
+      if (ctx) {
+        fonts.forEach(font => {
+          ctx.font = `16px "${font}"`;
+          ctx.fillText('Sample', 0, 20);
+        });
+      }
+      
       // Additional delay to ensure fonts are rendered
       await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Try using html-to-image library first (better font support)
+      if (window.htmlToImage) {
+        try {
+          const dataUrl = await window.htmlToImage.toPng(element, {
+            cacheBust: true,
+            pixelRatio: 2,
+          });
+          
+          const link = document.createElement('a');
+          link.download = `osu-banner-${bannerData?.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}.png`;
+          link.href = dataUrl;
+          link.click();
+          return;
+        } catch (err) {
+          console.warn("html-to-image failed, falling back to html2canvas", err);
+        }
+      }
+
+      // Fallback to html2canvas
+      if (!window.html2canvas) {
+        alert("Image generation library not loaded.");
+        return;
+      }
 
       const canvas = await window.html2canvas(element, {
         useCORS: true,
         allowTaint: true,
-        scale: 2, 
+        scale: 2,
         backgroundColor: null,
         logging: false,
         imageTimeout: 15000,
-        fontEmbedCSS: true,
       });
 
       const link = document.createElement('a');
