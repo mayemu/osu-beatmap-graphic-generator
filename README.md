@@ -20,6 +20,8 @@ The app will start and open in your browser, usually at http://localhost:5173.
 
 ### Build for production (optional)
    `npm run build`
+   
 This generates production-ready files in the dist/ folder.
+
 Preview:
    `npm run preview`   
