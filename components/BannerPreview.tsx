@@ -305,11 +305,11 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
       */}
       <div 
         id={id}
-        className={`relative flex flex-col justify-end text-white rounded-lg overflow-hidden transform-origin-top-left bg-black ${currentStyle.container}`}
+        className={`relative flex flex-col justify-end text-white rounded-3xl overflow-hidden transform-origin-top-left bg-black ${currentStyle.container}`}
         style={{ backgroundColor: config.overlayColor }}
       >
         {/* Background Image */}
-        <div className="absolute inset-0 z-0 overflow-hidden rounded-lg">
+        <div className="absolute inset-0 z-0 overflow-hidden">
             <img 
                 src={data.backgroundUrl} 
                 alt="Background" 
@@ -326,7 +326,7 @@ const BannerPreview: React.FC<BannerPreviewProps> = ({ data, config, id }) => {
         <div className="absolute inset-0 z-10" style={gradientSideStyle} />
 
         {/* Geometric Decoration */}
-        <div className="absolute inset-0 z-15 overflow-hidden">
+        <div className="absolute inset-0 z-15 overflow-hidden pointer-events-none">
              {renderDecoration(config.decoration)}
         </div>
         
