@@ -18,10 +18,8 @@ View your app in AI Studio: https://ai.studio/apps/drive/1aoalxdTCcObdDXlTr-S1GQ
    `npm run dev`
 The app will start and open in your browser, usually at http://localhost:5173.
 
-### Build for production (optional)
-   `npm run build`
+To build for production (optional): `npm run build`
    
 This generates production-ready files in the dist/ folder.
 
-Preview:
-   `npm run preview`   
+Preview: `npm run preview`   
