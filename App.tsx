@@ -207,7 +207,13 @@ const App: React.FC = () => {
     if (!element) return;
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 100));
+      // Wait for all fonts to load before capturing
+      if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+      }
+      
+      // Additional delay to ensure fonts are rendered
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       const canvas = await window.html2canvas(element, {
         useCORS: true,
@@ -216,6 +222,7 @@ const App: React.FC = () => {
         backgroundColor: null,
         logging: false,
         imageTimeout: 15000,
+        fontEmbedCSS: true,
       });
 
       const link = document.createElement('a');
